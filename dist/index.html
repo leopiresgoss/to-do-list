@@ -10,23 +10,26 @@
         <ul class="modal">
             <li class="head">
                 <input type="text" name="list-title" id="list-title" value="Today's To Do">
-                <button type="button" class="refresh">O</button>
             </li>
             <li class="add">
-                <input type="text" name="list-add" id="list-add" placeholder="Add to your list...">
-                <button type="button" class="refresh">E</button>
             </li>
-            <li class="todo-box">
+            <li id="todo-box">
                 <ul class="list">
                     <li>
-                        <input type="checkbox" name="example" id="example">
-                        <label for="example">Example</label>
+                        <button class="check" title="check" type="button"></button>
+                        <label for="example" class="active">Example</label>
                         <input type="text" class="option" value="Example" maxlength="255">
-                        <button type="button">:</button>
+                        <button type="button" class="change-order"></button>
+                    </li>
+                    <li>
+                        <button class="check" title="check" type="button"></button>
+                        <label for="example" class="active">Example</label>
+                        <input type="text" class="option" value="Example" maxlength="255">
+                        <button type="button" class="change-order"></button>
                     </li>
                 </ul>
             </li>
-            <li>
+            <li class="clear">
                 <button type="button" class="clear-completed">Clear all completed</button>
             </li>
         </ul>
