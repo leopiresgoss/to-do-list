@@ -15,9 +15,10 @@
                 </button>
             </li>
             <li class="add">
-                <input type="text" name="list-add" id="list-add" placeholder="Add to your list...">
-                <button type="button" class="add-btn">
-                </button>
+                <form action="/" method="post" id="add-form">
+                    <input type="text" name="list-add" id="list-add" maxlength="255" placeholder="Add to your list...">
+                    <button type="submit" class="add-btn"></button>
+                </form>
             </li>
             <li id="todo-box">
                 <ul class="list">

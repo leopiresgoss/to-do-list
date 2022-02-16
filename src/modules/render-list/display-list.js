@@ -1,8 +1,4 @@
 export default class DisplayList {
-  constructor(tasks) {
-    this.tasks = tasks;
-  }
-
   elementGenerator = (type, classNames) => {
     const elem = document.createElement(type);
     if (classNames) {
