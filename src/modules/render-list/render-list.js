@@ -1,17 +1,17 @@
 const tasks = [
   {
     index: 0,
-    description: "wash the dishes",
+    description: 'wash the dishes',
     completed: false,
   },
   {
     index: 1,
-    description: "complete To Do list project",
+    description: 'complete To Do list project',
     completed: false,
   },
   {
     index: 2,
-    description: "complete To Do list project",
+    description: 'complete To Do list project',
     completed: false,
   },
 ];
@@ -42,7 +42,7 @@ const createTask = (task) => {
   label.setAttribute('for', idContent);
 
   const input = elementGenerator('input', 'task');
-  input.type = "text";
+  input.type = 'text';
   input.value = task.description;
   input.setAttribute('maxlength', '255');
   input.id = idContent;
