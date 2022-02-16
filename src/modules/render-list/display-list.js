@@ -58,7 +58,7 @@ export default class DisplayList {
 
   createList(tasks) {
     const list = document.getElementById('todo-box');
-    const ul = this.elementGenerator('ul', 'list')
+    const ul = this.elementGenerator('ul', 'list');
     tasks.forEach((task) => {
       const li = this.createTask(task);
       ul.appendChild(li);
@@ -66,9 +66,9 @@ export default class DisplayList {
     list.appendChild(ul);
   }
 
-  clearList() {
+  clearList = () => {
     const list = document.getElementById('todo-box');
-    list.removeChild(list.children[0])
+    list.removeChild(list.children[0]);
   }
 
   updateList(tasks) {

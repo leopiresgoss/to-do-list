@@ -1,9 +1,9 @@
 import DisplayList from './display-list.js';
-import { addTask } from './update-list';
+import { addTask, saveList } from './update-list.js';
 
 const displayList = new DisplayList();
 
-let todoList = {
+const todoList = {
   listName: "Today's To Do",
   tasks: [
     {
@@ -24,21 +24,26 @@ let todoList = {
   ],
 };
 
-const setAddListener = (taskList) => {
+const setAddListener = (todoList) => {
+  const { tasks } = todoList;
+
   const addForm = document.getElementById('add-form');
 
   addForm.addEventListener('submit', (event) => {
     const addInput = document.getElementById('list-add');
-    taskList = addTask(taskList, addInput.value);
-    addInput.value = '';
-    
-    // update to localstorage
-    todoList.tasks = taskList;
+
+    // update todoList
+    todoList.tasks = addTask(tasks, addInput.value);
+
+    // update localstorage
+    saveList(todoList);
+
+    // display updated List
     displayList.updateList(todoList.tasks);
 
+    addInput.value = '';
     event.preventDefault();
   });
-
 };
 
 const renderList = () => {
@@ -46,7 +51,7 @@ const renderList = () => {
   displayList.createList(todoList.tasks);
 
   // set Listener
-  setAddListener(todoList.tasks);
+  setAddListener(todoList);
 };
 
 export default renderList;
