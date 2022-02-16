@@ -1,28 +1,7 @@
 import DisplayList from './display-list.js';
-import { addTask, saveList } from './update-list.js';
+import { addTask, saveList, getListFromLocalStorage } from './update-list.js';
 
 const displayList = new DisplayList();
-
-const todoList = {
-  listName: "Today's To Do",
-  tasks: [
-    {
-      index: 0,
-      description: 'wash the dishes',
-      completed: false,
-    },
-    {
-      index: 1,
-      description: 'complete To Do list project',
-      completed: false,
-    },
-    {
-      index: 2,
-      description: 'complete To Do list project',
-      completed: true,
-    },
-  ],
-};
 
 const setAddListener = (todoList) => {
   const { tasks } = todoList;
@@ -48,6 +27,8 @@ const setAddListener = (todoList) => {
 
 const renderList = () => {
   // display all tasks
+  const todoList = getListFromLocalStorage();
+
   displayList.createList(todoList.tasks);
 
   // set Listener

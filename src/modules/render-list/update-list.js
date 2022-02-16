@@ -2,9 +2,15 @@
 
 // get tasks from local storage
 const getListFromLocalStorage = () => {
-  const taskList = JSON.parse(window.localStorage.getItem('todolist'));
-  if (taskList) return taskList;
-  return {};
+  let todoList = JSON.parse(window.localStorage.getItem('todolist'));
+  if (todoList) return todoList;
+
+  // it will update todoList obj for empty taskList
+  todoList = {
+    listName: "Today's To Do",
+    tasks: [],
+  };
+  return todoList;
 };
 
 // save tasks to local storage
@@ -30,4 +36,4 @@ const addTask = (taskList, description) => {
 
 // remove to local storage
 
-export { addTask, saveList };
+export { addTask, saveList, getListFromLocalStorage };
