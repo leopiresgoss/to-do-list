@@ -57,13 +57,22 @@ export default class DisplayList {
   }
 
   createList(tasks) {
-    const list = document.querySelector('.list');
-
+    const list = document.getElementById('todo-box');
+    const ul = this.elementGenerator('ul', 'list')
     tasks.forEach((task) => {
       const li = this.createTask(task);
-      list.appendChild(li);
+      ul.appendChild(li);
     });
+    list.appendChild(ul);
+  }
 
-    return list;
+  clearList() {
+    const list = document.getElementById('todo-box');
+    list.removeChild(list.children[0])
+  }
+
+  updateList(tasks) {
+    this.clearList();
+    this.createList(tasks);
   }
 }
