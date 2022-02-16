@@ -34,6 +34,10 @@ const addTask = (taskList, description) => {
   return taskList;
 };
 
-// remove to local storage
+// update index
+
+// remove task
+
+// remove all task
 
 export { addTask, saveList, getListFromLocalStorage };

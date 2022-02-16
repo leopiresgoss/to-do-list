@@ -3,6 +3,15 @@ import { addTask, saveList, getListFromLocalStorage } from './update-list.js';
 
 const displayList = new DisplayList();
 
+const removeEditClass = () => {
+  const tasks = document.querySelectorAll('.task');
+  tasks.forEach((task) => {
+    const li = task.parentNode;
+    li.classList.remove('edit')
+    li.lastChild.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
+  });
+}
+
 const setAddListener = (todoList) => {
   const { tasks } = todoList;
 
@@ -25,6 +34,19 @@ const setAddListener = (todoList) => {
   });
 };
 
+const showDeleteBtn = () => {
+  const tasks = document.querySelectorAll('.task');
+  tasks.forEach((task) => {
+    task.addEventListener('click', (event) => {
+      const li = event.target.parentNode;
+      removeEditClass();
+      li.classList.add('edit');
+      li.lastChild.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
+    })
+  });
+
+}
+
 const renderList = () => {
   // display all tasks
   const todoList = getListFromLocalStorage();
@@ -33,6 +55,8 @@ const renderList = () => {
 
   // set Listener
   setAddListener(todoList);
+
+  showDeleteBtn();
 };
 
 export default renderList;

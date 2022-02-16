@@ -79,13 +79,27 @@ button {
   width: 100%;
 }
 
+.edit {
+  background-color: #fffeca;
+}
+
 .check {
   margin-right: 8px;
+}
+
+.task {
+  height: 100%;
+}
+
+.task.completed {
+  display: flex;
+  align-items: center;
 }
 
 .task-completed .check {
   color: black;
 }
+
 
 .list label {
   margin: auto 0;
