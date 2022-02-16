@@ -6,6 +6,10 @@ import {tasks, createList} from './modules/render-list/render-list.js'
 // display all tasks
 createList(tasks);
 
-document.getElementById('add-img').src = enterIcon;
+const img = document.createElement('img');
+img.src = enterIcon;
+img.alt = "";
+img.id = 'add-img';
+document.querySelector('.add-btn').appendChild(img);
 
 
