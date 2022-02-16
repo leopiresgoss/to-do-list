@@ -83,8 +83,24 @@ button {
   margin-right: 8px;
 }
 
+.task-completed .check {
+  color: black;
+}
+
 .list label {
   margin: auto 0;
+}
+
+.task.completed {
+  font-size: 1rem;
+  width: 100%;
+  font-style: italic;
+  font-weight: normal;
+  text-decoration: line-through;
+}
+
+.change-order {
+  cursor: move;
 }
 
 .clear-completed {

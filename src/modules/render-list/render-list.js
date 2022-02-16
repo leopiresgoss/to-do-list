@@ -12,7 +12,7 @@ const tasks = [
   {
     index: 2,
     description: 'complete To Do list project',
-    completed: false,
+    completed: true,
   },
 ];
 
@@ -28,6 +28,24 @@ const elementGenerator = (type, classNames) => {
   return elem;
 };
 
+const taskInput = (task, idContent) => {
+  const input = elementGenerator('input', 'task');
+  input.type = 'text';
+  input.value = task.description;
+  input.setAttribute('maxlength', '255');
+  input.id = idContent;
+
+  return input;
+};
+
+const taskCompleted = (task, idContent) => {
+  const h6 = elementGenerator('h6', 'task completed');
+  h6.textContent = task.description;
+  h6.id = idContent;
+
+  return h6;
+};
+
 const createTask = (task) => {
   const idContent = `task-${task.index}`;
   const li = elementGenerator('li');
@@ -35,19 +53,22 @@ const createTask = (task) => {
   const checkBtn = elementGenerator('button', 'check');
   checkBtn.type = 'button';
   checkBtn.title = 'check';
-  checkBtn.innerHTML = '<i class="fa-regular fa-square"></i>';
 
-  const input = elementGenerator('input', 'task active');
-  input.type = 'text';
-  input.value = task.description;
-  input.setAttribute('maxlength', '255');
-  input.id = idContent;
+  let taskElem;
 
-  // update adding the image
+  if (task.completed) {
+    checkBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
+    taskElem = taskCompleted(task, idContent);
+    li.classList.add('task-completed');
+  } else {
+    checkBtn.innerHTML = '<i class="fa-regular fa-square"></i>';
+    taskElem = taskInput(task, idContent);
+  }
+
   const changeBtn = elementGenerator('button', 'change-order');
   changeBtn.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
 
-  li.append(checkBtn, input, changeBtn);
+  li.append(checkBtn, taskElem, changeBtn);
 
   return li;
 };
