@@ -37,7 +37,14 @@ const addTask = (taskList, description) => {
 // update index
 
 // remove task
+const removeTask = (id, todoList) => {
+  const { tasks } = todoList;
+  todoList.tasks = tasks.filter((task) => task.index !== id);
+
+  // todo: update index
+  return todoList;
+};
 
 // remove all task
 
-export { addTask, saveList, getListFromLocalStorage };
+export { addTask, saveList, getListFromLocalStorage, removeTask };

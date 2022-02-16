@@ -1,5 +1,5 @@
 import DisplayList from './display-list.js';
-import { addTask, saveList, getListFromLocalStorage } from './update-list.js';
+import { addTask, saveList, getListFromLocalStorage, removeTask } from './update-list.js';
 
 const displayList = new DisplayList();
 
@@ -7,10 +7,12 @@ const removeEditClass = () => {
   const tasks = document.querySelectorAll('.task');
   tasks.forEach((task) => {
     const li = task.parentNode;
-    li.classList.remove('edit')
-    li.lastChild.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
+    li.classList.remove('edit');
+    const button = li.lastChild;
+    button.classList.remove('remove');
+    button.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
   });
-}
+};
 
 const setAddListener = (todoList) => {
   const { tasks } = todoList;
@@ -34,18 +36,32 @@ const setAddListener = (todoList) => {
   });
 };
 
-const showDeleteBtn = () => {
+const setDeleteListener = (btn, todoList) => {
+  btn.addEventListener('click', (event) => {
+    const btn = event.target.parentNode;
+    const id = Number(btn.getAttribute('data-id'));
+    const updatedTodo = removeTask(id, todoList);
+
+    saveList(updatedTodo);
+    displayList.updateList(updatedTodo.tasks);
+    showDeleteBtn(updatedTodo);
+  });
+};
+
+const showDeleteBtn = (todoList) => {
   const tasks = document.querySelectorAll('.task');
   tasks.forEach((task) => {
     task.addEventListener('click', (event) => {
       const li = event.target.parentNode;
       removeEditClass();
       li.classList.add('edit');
-      li.lastChild.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
-    })
+      const deleteBtn = li.lastChild;
+      deleteBtn.classList.add('remove');
+      deleteBtn.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
+      setDeleteListener(deleteBtn, todoList);
+    });
   });
-
-}
+};
 
 const renderList = () => {
   // display all tasks
@@ -56,7 +72,7 @@ const renderList = () => {
   // set Listener
   setAddListener(todoList);
 
-  showDeleteBtn();
+  showDeleteBtn(todoList);
 };
 
 export default renderList;

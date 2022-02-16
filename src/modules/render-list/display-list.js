@@ -49,6 +49,7 @@ export default class DisplayList {
     }
 
     const changeBtn = this.elementGenerator('button', 'change-order');
+    changeBtn.setAttribute('data-id', `${task.index}`);
     changeBtn.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
 
     li.append(checkBtn, taskElem, changeBtn);
