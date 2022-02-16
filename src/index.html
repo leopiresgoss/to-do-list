@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+</head>
+<body>
+    <div id="todo-container">
+        <ul class="modal">
+            <li class="head">
+                <input type="text" name="list-title" id="list-title" value="Today's To Do">
+                <button type="button" class="refresh">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                </button>
+            </li>
+            <li class="add">
+                <input type="text" name="list-add" id="list-add" placeholder="Add to your list...">
+                <button type="button" class="add-btn">
+                </button>
+            </li>
+            <li id="todo-box">
+                <ul class="list">
+                </ul>
+            </li>
+            <li class="clear">
+                <button type="button" class="clear-completed">Clear all completed</button>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
