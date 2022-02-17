@@ -67,7 +67,7 @@ export default class Listeners extends DisplayList {
       const input = event.currentTarget;
       const id = Number(input.id.replace(/\D+/g, ''));
 
-      this.todoList.tasks[id].description = input.value;
+      this.todoList.tasks[id - 1].description = input.value;
       UpdateList.saveList(this.todoList);
     });
   };
@@ -77,14 +77,12 @@ export default class Listeners extends DisplayList {
     const checkBtn = li.querySelector('.check');
     const id = Number(task.id.replace(/\D+/g, ''));
 
-    if (!li.classList.contains('task-completed')) {
-      checkBtn.addEventListener('click', () => {
-        if (id) {
-          this.todoList = UpdateList.completeTask(id, this.todoList);
-          this.showAll();
-        }
-      });
-    }
+    checkBtn.addEventListener('click', () => {
+      if (id) {
+        this.todoList = UpdateList.updateTaskCompleted(id, this.todoList);
+        this.showAll();
+      }
+    });
   };
 
   tasksListeners = () => {

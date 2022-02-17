@@ -47,8 +47,13 @@ export default class UpdateList {
   };
 
   // change completed
-  static completeTask = (id, todoList) => {
-    todoList.tasks[id - 1].completed = true;
+  static updateTaskCompleted = (id, todoList) => {
+    if (todoList.tasks[id - 1].completed) {
+      todoList.tasks[id - 1].completed = false;
+    } else {
+      todoList.tasks[id - 1].completed = true;
+    }
+
     return todoList;
   };
 
