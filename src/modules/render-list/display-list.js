@@ -77,8 +77,8 @@ export default class DisplayList {
     list.removeChild(list.children[0]);
   }
 
-  updateList(tasks) {
+  updateList(todoList) {
     this.clearList();
-    this.createList(tasks);
+    this.createList(todoList);
   }
 }

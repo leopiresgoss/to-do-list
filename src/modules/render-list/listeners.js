@@ -101,7 +101,7 @@ export default class Listeners extends DisplayList {
     UpdateList.saveList(this.todoList);
 
     // display updated List
-    this.updateList(this.todoList.tasks);
+    this.updateList(this.todoList);
     this.removeEditClass();
     this.tasksListeners();
   }
