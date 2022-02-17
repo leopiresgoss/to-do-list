@@ -51,4 +51,10 @@ export default class UpdateList {
     todoList.tasks[id - 1].completed = true;
     return todoList;
   };
+
+  static clearCompletedTask = (todoList) => {
+    const { tasks } = todoList;
+    todoList.tasks = tasks.filter((task) => !task.completed);
+    return todoList;
+  }
 }

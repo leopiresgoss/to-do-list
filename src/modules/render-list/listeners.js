@@ -81,7 +81,6 @@ export default class Listeners extends DisplayList {
       checkBtn.addEventListener('click', () => {
         if (id) {
           this.todoList = UpdateList.completeTask(id, this.todoList);
-          UpdateList.saveList(this.todoList);
           this.showAll();
         }
       });
@@ -108,6 +107,13 @@ export default class Listeners extends DisplayList {
     listTitle.addEventListener('change', (event) => {
       this.todoList.listName = event.currentTarget.value;
       UpdateList.saveList(this.todoList);
+    });
+  };
+
+  clearListener = () => {
+    document.querySelector('.clear-completed').addEventListener('click', () => {
+      this.todoList = UpdateList.clearCompletedTask(this.todoList);
+      this.showAll(this.todoList);
     });
   };
 
