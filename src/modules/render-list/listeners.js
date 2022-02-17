@@ -1,5 +1,5 @@
 import DisplayList from './display-list.js';
-import { addTask, saveList, removeTask, updateIndex } from './update-list.js';
+import UpdateList from './update-list.js';
 
 export default class Listeners extends DisplayList {
   constructor(todoList) {
@@ -26,7 +26,7 @@ export default class Listeners extends DisplayList {
       const addInput = document.getElementById('list-add');
 
       // update this.todoList
-      this.todoList.tasks = addTask(taskList, addInput.value);
+      this.todoList.tasks = UpdateList.addTask(taskList, addInput.value);
 
       this.showAll();
 
@@ -39,7 +39,7 @@ export default class Listeners extends DisplayList {
     btn.addEventListener('click', (event) => {
       const btn = event.currentTarget;
       const id = Number(btn.getAttribute('data-id'));
-      this.todoList = removeTask(id, this.todoList);
+      this.todoList = UpdateList.removeTask(id, this.todoList);
       this.showAll();
     });
   };
@@ -60,10 +60,10 @@ export default class Listeners extends DisplayList {
   };
 
   showAll = () => {
-    this.todoList.tasks = updateIndex(this.todoList.tasks);
+    this.todoList.tasks = UpdateList.updateIndex(this.todoList.tasks);
 
     // update localstorage
-    saveList(this.todoList);
+    UpdateList.saveList(this.todoList);
 
     // display updated List
     this.updateList(this.todoList.tasks);

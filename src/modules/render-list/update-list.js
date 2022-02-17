@@ -1,56 +1,51 @@
-// import DisplayList from './display-list.js';
+export default class UpdateList {
+  static getListFromLocalStorage = () => {
+    let todoList = JSON.parse(window.localStorage.getItem('todolist'));
+    if (todoList) return todoList;
 
-// get tasks from local storage
-const getListFromLocalStorage = () => {
-  let todoList = JSON.parse(window.localStorage.getItem('todolist'));
-  if (todoList) return todoList;
-
-  // it will update todoList obj for empty taskList
-  todoList = {
-    listName: "Today's To Do",
-    tasks: [],
-  };
-  return todoList;
-};
-
-// save tasks to local storage
-const saveList = (todoList) => {
-  window.localStorage.setItem('todolist', JSON.stringify(todoList));
-};
-
-// add new task
-const addTask = (taskList, description) => {
-  let index = 0;
-  if (taskList.length > 0) {
-    index = taskList.length;
+    // it will update todoList obj for empty taskList
+    todoList = {
+      listName: "Today's To Do",
+      tasks: [],
+    };
+    return todoList;
   }
 
-  taskList.push({
-    index,
-    description,
-    completed: false,
-  });
+  // save tasks to local storage
+  static saveList = (todoList) => {
+    window.localStorage.setItem('todolist', JSON.stringify(todoList));
+  }
 
-  return taskList;
-};
+  // add new task
+  static addTask = (taskList, description) => {
+    let index = 0;
+    if (taskList.length > 0) {
+      index = taskList.length;
+    }
 
-// update index
-const updateIndex = (tasks) => {
-  tasks = tasks.map((task, index) => {
-    task.index = index;
-    return task;
-  });
-  return tasks;
-};
+    taskList.push({
+      index,
+      description,
+      completed: false,
+    });
 
-// remove task
-const removeTask = (id, todoList) => {
-  let { tasks } = todoList;
-  tasks = tasks.filter((task) => task.index !== id);
-  todoList.tasks = tasks;
-  return todoList;
-};
+    return taskList;
+  }
 
-// remove all task
+  // update index
+  static updateIndex = (tasks) => {
+    tasks = tasks.map((task, index) => {
+      task.index = index;
+      return task;
+    });
+    return tasks;
+  }
 
-export { addTask, saveList, getListFromLocalStorage, removeTask, updateIndex };
+  // remove task
+  static removeTask = (id, todoList) => {
+    let { tasks } = todoList;
+    tasks = tasks.filter((task) => task.index !== id);
+    todoList.tasks = tasks;
+    return todoList;
+  }
+}
