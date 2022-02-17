@@ -16,7 +16,7 @@ export default class Listeners extends DisplayList {
       button.classList.remove('remove');
       button.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
     });
-  };
+  }
 
   setAddListener = () => {
     const addForm = document.getElementById('add-form');
@@ -33,7 +33,7 @@ export default class Listeners extends DisplayList {
       addInput.value = '';
       event.preventDefault();
     });
-  };
+  }
 
   setDeleteListener = (btn) => {
     btn.addEventListener('click', (event) => {
@@ -42,22 +42,37 @@ export default class Listeners extends DisplayList {
       this.todoList = UpdateList.removeTask(id, this.todoList);
       this.showAll();
     });
-  };
+  }
 
-  showDeleteBtn = () => {
+  showDeleteBtn = (task) => {
+    task.addEventListener('click', (event) => {
+      const li = event.target.parentNode;
+      this.removeEditClass();
+      li.classList.add('edit');
+      const deleteBtn = li.querySelector('.change-order');
+      deleteBtn.classList.add('remove');
+      deleteBtn.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
+      this.setDeleteListener(deleteBtn);
+    });
+  }
+
+  editTaskListener = (task) => {
+    task.addEventListener('change', (event) => {
+      const input = event.currentTarget;
+      const id = Number(input.id.replace(/\D+/g, ''));
+
+      this.todoList.tasks[id].description = input.value;
+      UpdateList.saveList(this.todoList);
+    });
+  }
+
+  tasksListeners = () => {
     const tasks = document.querySelectorAll('.task');
     tasks.forEach((task) => {
-      task.addEventListener('click', (event) => {
-        const li = event.target.parentNode;
-        this.removeEditClass();
-        li.classList.add('edit');
-        const deleteBtn = li.querySelector('.change-order');
-        deleteBtn.classList.add('remove');
-        deleteBtn.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
-        this.setDeleteListener(deleteBtn);
-      });
+      this.showDeleteBtn(task);
+      this.editTaskListener(task);
     });
-  };
+  }
 
   showAll = () => {
     this.todoList.tasks = UpdateList.updateIndex(this.todoList.tasks);
@@ -68,6 +83,6 @@ export default class Listeners extends DisplayList {
     // display updated List
     this.updateList(this.todoList.tasks);
     this.removeEditClass();
-    this.showDeleteBtn();
-  };
+    this.tasksListeners();
+  }
 }

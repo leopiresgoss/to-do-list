@@ -10,7 +10,7 @@ const renderList = () => {
   const listeners = new Listeners(todoList);
   displayList.createList(todoList.tasks);
   listeners.setAddListener();
-  listeners.showDeleteBtn();
+  listeners.tasksListeners();
 };
 
 export default renderList;
