@@ -21,14 +21,6 @@ export default class DisplayList {
     return input;
   }
 
-  taskCompleted(task, idContent) {
-    const h6 = this.elementGenerator('h6', 'task completed');
-    h6.textContent = task.description;
-    h6.id = idContent;
-
-    return h6;
-  }
-
   createTask(task) {
     const idContent = `task-${task.index}`;
     const li = this.elementGenerator('li');
@@ -41,7 +33,8 @@ export default class DisplayList {
 
     if (task.completed) {
       checkBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
-      taskElem = this.taskCompleted(task, idContent);
+      taskElem = this.taskInput(task, idContent);
+      taskElem.classList.add('completed');
       li.classList.add('task-completed');
     } else {
       checkBtn.innerHTML = '<i class="fa-regular fa-square"></i>';

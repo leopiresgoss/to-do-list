@@ -12,6 +12,7 @@ const renderList = () => {
   listeners.updateListTitle();
   listeners.setAddListener();
   listeners.tasksListeners();
+  listeners.clearListener();
 };
 
 export default renderList;
