@@ -18,10 +18,7 @@ export default class UpdateList {
 
   // add new task
   static addTask = (taskList, description) => {
-    let index = 0;
-    if (taskList.length > 0) {
-      index = taskList.length;
-    }
+    const index = taskList.length + 1;
 
     taskList.push({
       index,
@@ -35,7 +32,7 @@ export default class UpdateList {
   // update index
   static updateIndex = (tasks) => {
     tasks = tasks.map((task, index) => {
-      task.index = index;
+      task.index = index + 1;
       return task;
     });
     return tasks;
