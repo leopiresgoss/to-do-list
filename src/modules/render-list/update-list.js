@@ -9,12 +9,12 @@ export default class UpdateList {
       tasks: [],
     };
     return todoList;
-  }
+  };
 
   // save tasks to local storage
   static saveList = (todoList) => {
     window.localStorage.setItem('todolist', JSON.stringify(todoList));
-  }
+  };
 
   // add new task
   static addTask = (taskList, description) => {
@@ -27,7 +27,7 @@ export default class UpdateList {
     });
 
     return taskList;
-  }
+  };
 
   // update index
   static updateIndex = (tasks) => {
@@ -36,7 +36,7 @@ export default class UpdateList {
       return task;
     });
     return tasks;
-  }
+  };
 
   // remove task
   static removeTask = (id, todoList) => {
@@ -44,5 +44,11 @@ export default class UpdateList {
     tasks = tasks.filter((task) => task.index !== id);
     todoList.tasks = tasks;
     return todoList;
-  }
+  };
+
+  // change completed
+  static completeTask = (id, todoList) => {
+    todoList.tasks[id - 1].completed = true;
+    return todoList;
+  };
 }
