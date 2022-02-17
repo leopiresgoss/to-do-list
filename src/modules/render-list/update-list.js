@@ -21,7 +21,7 @@ const saveList = (todoList) => {
 // add new task
 const addTask = (taskList, description) => {
   let index = 0;
-  if (taskList.length > 1) {
+  if (taskList.length > 0) {
     index = taskList.length;
   }
 
@@ -35,16 +35,22 @@ const addTask = (taskList, description) => {
 };
 
 // update index
+const updateIndex = (tasks) => {
+  tasks = tasks.map((task, index) => {
+    task.index = index;
+    return task;
+  });
+  return tasks;
+};
 
 // remove task
 const removeTask = (id, todoList) => {
-  const { tasks } = todoList;
-  todoList.tasks = tasks.filter((task) => task.index !== id);
-
-  // todo: update index
+  let { tasks } = todoList;
+  tasks = tasks.filter((task) => task.index !== id);
+  todoList.tasks = tasks;
   return todoList;
 };
 
 // remove all task
 
-export { addTask, saveList, getListFromLocalStorage, removeTask };
+export { addTask, saveList, getListFromLocalStorage, removeTask, updateIndex };
