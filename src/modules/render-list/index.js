@@ -8,7 +8,8 @@ const renderList = () => {
   const todoList = UpdateList.getListFromLocalStorage();
   const displayList = new DisplayList();
   const listeners = new Listeners(todoList);
-  displayList.createList(todoList.tasks);
+  displayList.createList(todoList);
+  listeners.updateListTitle();
   listeners.setAddListener();
   listeners.tasksListeners();
 };

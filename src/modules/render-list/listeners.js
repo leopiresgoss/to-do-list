@@ -8,6 +8,8 @@ export default class Listeners extends DisplayList {
   }
 
   removeEditClass = () => {
+    document.getElementById('list-title').parentNode.classList.remove('edit');
+
     const tasks = document.querySelectorAll('.task');
     tasks.forEach((task) => {
       const li = task.parentNode;
@@ -20,6 +22,10 @@ export default class Listeners extends DisplayList {
 
   setAddListener = () => {
     const addForm = document.getElementById('add-form');
+
+    addForm.parentNode.addEventListener('click', () => {
+      this.removeEditClass();
+    });
 
     addForm.addEventListener('submit', (event) => {
       const taskList = this.todoList.tasks;
@@ -71,6 +77,20 @@ export default class Listeners extends DisplayList {
     tasks.forEach((task) => {
       this.showDeleteBtn(task);
       this.editTaskListener(task);
+    });
+  }
+
+  updateListTitle = () => {
+    const listTitle = document.getElementById('list-title');
+
+    listTitle.parentNode.addEventListener('click', () => {
+      this.removeEditClass();
+      listTitle.parentNode.classList.add('edit');
+    });
+
+    listTitle.addEventListener('change', (event) => {
+      this.todoList.listName = event.currentTarget.value;
+      UpdateList.saveList(this.todoList);
     });
   }
 

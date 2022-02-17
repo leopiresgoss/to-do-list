@@ -57,7 +57,12 @@ export default class DisplayList {
     return li;
   }
 
-  createList(tasks) {
+  createList(todoList) {
+    const listTitle = document.getElementById('list-title');
+    if (todoList.listName !== '') listTitle.value = todoList.listName;
+
+    const { tasks } = todoList;
+
     const list = document.getElementById('todo-box');
     const ul = this.elementGenerator('ul', 'list');
     tasks.forEach((task) => {
