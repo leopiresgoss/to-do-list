@@ -7,7 +7,7 @@
 body {
   background: rgb(250, 250, 250);
   background: radial-gradient(circle, rgba(250, 250, 250, 1) 0%, rgba(236, 236, 236, 1) 100%);
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   font-family: 'Open Sans', sans-serif;
 }
@@ -26,21 +26,25 @@ button {
   height: 100%;
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .modal {
   width: 408px;
   background-color: #fff;
+  margin: auto;
 }
 
 .modal li {
   display: flex;
   align-items: center;
   padding: 12px;
-  height: 49px;
+  min-height: 49px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+form {
+  flex: 1;
+  display: flex;
 }
 
 #add-img {
@@ -48,12 +52,10 @@ button {
   filter: invert(50%);
 }
 
-.list input {
-  flex: 1;
-}
-
 .modal li input {
   flex: 1;
+  min-width: 50px;
+  min-height: 48px;
   background: transparent;
   font-size: 1rem;
 }
@@ -68,6 +70,7 @@ button {
 
 .modal li.clear {
   padding: 0;
+  height: 49px;
 }
 
 #todo-box {
@@ -79,8 +82,26 @@ button {
   width: 100%;
 }
 
+.edit {
+  background-color: #fffeca;
+}
+
 .check {
   margin-right: 8px;
+}
+
+.task {
+  height: 100%;
+}
+
+.task.completed {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  width: 100%;
+  font-style: italic;
+  font-weight: normal;
+  text-decoration: line-through;
 }
 
 .task-completed .check {
@@ -91,16 +112,12 @@ button {
   margin: auto 0;
 }
 
-.task.completed {
-  font-size: 1rem;
-  width: 100%;
-  font-style: italic;
-  font-weight: normal;
-  text-decoration: line-through;
-}
-
 .change-order {
   cursor: move;
+}
+
+.remove {
+  cursor: pointer;
 }
 
 .clear-completed {
@@ -112,4 +129,10 @@ button {
 .clear-completed:hover {
   text-decoration: underline;
   color: black;
+}
+
+@media screen and (max-width: 440px) {
+  .modal {
+    width: 90%;
+  }
 }
