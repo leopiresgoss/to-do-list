@@ -14,10 +14,13 @@ export default class Listeners extends DisplayList {
     tasks.forEach((task) => {
       const li = task.parentNode;
       li.classList.remove('edit');
-      const button = li.querySelector('.change-order');
-      button.classList.remove('remove');
-      button.innerHTML = '';
-      button.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
+      const button = li.querySelector('.right-btn.remove');
+      if (button) {
+        button.classList.remove('remove');
+        button.classList.add('change-order');
+        button.innerHTML = '';
+        button.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
+      }
     });
   };
 
@@ -49,21 +52,21 @@ export default class Listeners extends DisplayList {
     this.showAll();
   }
 
-  setDeleteListener = (btn) => {    
+  setDeleteListener = (btn) => {
     btn.addEventListener('click', this.deleteEvent);
   };
 
   showDeleteBtn = (task) => {
     task.addEventListener('click', (event) => {
-      console.log('hey')
       const li = event.target.parentNode;
       this.removeEditClass();
       li.classList.add('edit');
-      const deleteBtn = li.querySelector('.change-order');
+      const deleteBtn = li.querySelector('.right-btn');
+      deleteBtn.classList.remove('change-order');
       deleteBtn.classList.add('remove');
       deleteBtn.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
       this.setDeleteListener(deleteBtn);
-      event.stopPropagation()
+      event.stopPropagation();
     });
   };
 
