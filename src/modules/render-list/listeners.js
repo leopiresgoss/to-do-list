@@ -66,8 +66,7 @@ export default class Listeners extends DisplayList {
     task.addEventListener('change', (event) => {
       const input = event.currentTarget;
       const id = Number(input.id.replace(/\D+/g, ''));
-
-      this.todoList.tasks[id - 1].description = input.value;
+      this.todoList = UpdateList.editTask(id, input.value, this.todoList);
       UpdateList.saveList(this.todoList);
     });
   };
