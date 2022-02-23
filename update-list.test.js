@@ -12,11 +12,13 @@ describe('Add/Remove functions test', () => {
     ],
   };
 
-  const expected1 = [{
-    index: 2,
-    description: 'test1',
-    completed: false,
-  }];
+  const expected1 = [
+    {
+      index: 2,
+      description: 'test1',
+      completed: false,
+    },
+  ];
 
   const expected2 = {
     listName: "Today's To Do",
@@ -34,9 +36,16 @@ describe('Add/Remove functions test', () => {
     ],
   };
 
+  const expected4 = {
+    listName: "Today's To Do",
+    tasks: [],
+  };
+
   // Add function test
   test('Add function test', () => {
-    expect(UpdateList.addTask(todoList.tasks, 'test1')).toEqual(expect.arrayContaining(expected1));
+    expect(UpdateList.addTask(todoList.tasks, 'test1')).toEqual(
+      expect.arrayContaining(expected1)
+    );
   });
 
   // Remove function test
@@ -44,8 +53,15 @@ describe('Add/Remove functions test', () => {
     expect(UpdateList.removeTask(1, todoList)).toMatchObject(expected2);
   });
 
-  // Remove function test
+  // Update task completed
   test('Update task completed', () => {
-    expect(UpdateList.updateTaskCompleted(1, todoList)).toMatchObject(expected3);
+    expect(UpdateList.updateTaskCompleted(1, todoList)).toMatchObject(
+      expected3
+    );
+  });
+
+  // Clear all completed function
+  test('Clear all completed function', () => {
+    expect(UpdateList.clearCompletedTask(todoList)).toMatchObject(expected4);
   });
 });
