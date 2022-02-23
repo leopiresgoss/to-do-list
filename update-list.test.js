@@ -23,6 +23,17 @@ describe('Add/Remove functions test', () => {
     tasks: expected1,
   };
 
+  const expected3 = {
+    listName: "Today's To Do",
+    tasks: [
+      {
+        index: 2,
+        description: 'test1',
+        completed: true,
+      },
+    ],
+  };
+
   // Add function test
   test('Add function test', () => {
     expect(UpdateList.addTask(todoList.tasks, 'test1')).toEqual(expect.arrayContaining(expected1));
@@ -31,5 +42,10 @@ describe('Add/Remove functions test', () => {
   // Remove function test
   test('Remove function test', () => {
     expect(UpdateList.removeTask(1, todoList)).toMatchObject(expected2);
+  });
+
+  // Remove function test
+  test('Update task completed', () => {
+    expect(UpdateList.updateTaskCompleted(1, todoList)).toMatchObject(expected3);
   });
 });
