@@ -1,6 +1,6 @@
 export default class UpdateList {
   static getListFromLocalStorage = () => {
-    let todoList = JSON.parse(window.localStorage.getItem('todolist'));
+    let todoList = JSON.parse(localStorage.getItem('todolist'));
     if (todoList) return todoList;
 
     // it will update todoList obj for empty taskList
@@ -13,7 +13,7 @@ export default class UpdateList {
 
   // save tasks to local storage
   static saveList = (todoList) => {
-    window.localStorage.setItem('todolist', JSON.stringify(todoList));
+    localStorage.setItem('todolist', JSON.stringify(todoList));
   };
 
   // add new task
@@ -45,6 +45,12 @@ export default class UpdateList {
     todoList.tasks = tasks;
     return todoList;
   };
+
+  // edit task
+  static editTask = (id, description, todoList) => {
+    todoList.tasks[id - 1].description = description;
+    return todoList;
+  }
 
   // change completed
   static updateTaskCompleted = (id, todoList) => {
