@@ -16,6 +16,7 @@ export default class Listeners extends DisplayList {
       li.classList.remove('edit');
       const button = li.querySelector('.right-btn.remove');
       if (button) {
+        button.removeEventListener('click', this.deleteEvent);
         button.classList.remove('remove');
         button.classList.add('change-order');
         button.innerHTML = '';
@@ -50,7 +51,7 @@ export default class Listeners extends DisplayList {
     const id = Number(btn.getAttribute('data-id'));
     this.todoList = UpdateList.removeTask(id, this.todoList);
     this.showAll();
-  }
+  };
 
   setDeleteListener = (btn) => {
     btn.addEventListener('click', this.deleteEvent);
