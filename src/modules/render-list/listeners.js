@@ -7,6 +7,16 @@ export default class Listeners extends DisplayList {
     this.todoList = todoList;
   }
 
+  removeEditClassListener = () => {
+    // when clicking outsitde the element should remove the class
+    document.body.addEventListener('click', (e) => {
+      const modal = e.target.childNodes[1];
+      if (modal !== undefined && modal.classList.contains('modal')) {
+        this.removeEditClass();
+      }
+    });
+  };
+
   removeEditClass = () => {
     document.getElementById('list-title').parentNode.classList.remove('edit');
 
