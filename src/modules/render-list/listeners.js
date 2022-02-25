@@ -46,6 +46,11 @@ export default class Listeners extends DisplayList {
       const taskList = this.todoList.tasks;
       const addInput = document.getElementById('list-add');
 
+      if (!addInput.checkValidity()) {
+        addInput.reportValidity();
+        return;
+      }
+
       // update this.todoList
       this.todoList.tasks = UpdateList.addTask(taskList, addInput.value);
 
