@@ -115,7 +115,7 @@ form {
 }
 
 .change-order {
-  cursor: move;
+  cursor: initial;
 }
 
 .remove {

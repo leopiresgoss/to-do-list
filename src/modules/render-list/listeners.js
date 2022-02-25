@@ -7,6 +7,16 @@ export default class Listeners extends DisplayList {
     this.todoList = todoList;
   }
 
+  removeEditClassListener = () => {
+    // when clicking outsitde the element should remove the class
+    document.body.addEventListener('click', (e) => {
+      const modal = e.target.childNodes[1];
+      if (modal !== undefined && modal.classList.contains('modal')) {
+        this.removeEditClass();
+      }
+    });
+  };
+
   removeEditClass = () => {
     document.getElementById('list-title').parentNode.classList.remove('edit');
 
@@ -35,6 +45,11 @@ export default class Listeners extends DisplayList {
     addForm.addEventListener('submit', (event) => {
       const taskList = this.todoList.tasks;
       const addInput = document.getElementById('list-add');
+
+      if (!addInput.checkValidity()) {
+        addInput.reportValidity();
+        return;
+      }
 
       // update this.todoList
       this.todoList.tasks = UpdateList.addTask(taskList, addInput.value);

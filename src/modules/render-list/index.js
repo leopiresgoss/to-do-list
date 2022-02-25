@@ -13,6 +13,7 @@ const renderList = () => {
   listeners.setAddListener();
   listeners.tasksListeners();
   listeners.clearListener();
+  listeners.removeEditClassListener();
 };
 
 export default renderList;
