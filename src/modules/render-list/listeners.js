@@ -14,9 +14,14 @@ export default class Listeners extends DisplayList {
     tasks.forEach((task) => {
       const li = task.parentNode;
       li.classList.remove('edit');
-      const button = li.lastChild;
-      button.classList.remove('remove');
-      button.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
+      const button = li.querySelector('.right-btn.remove');
+      if (button) {
+        button.removeEventListener('click', this.deleteEvent);
+        button.classList.remove('remove');
+        button.classList.add('change-order');
+        button.innerHTML = '';
+        button.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
+      }
     });
   };
 
@@ -41,13 +46,15 @@ export default class Listeners extends DisplayList {
     });
   };
 
+  deleteEvent = (e) => {
+    const btn = e.currentTarget;
+    const id = Number(btn.getAttribute('data-id'));
+    this.todoList = UpdateList.removeTask(id, this.todoList);
+    this.showAll();
+  };
+
   setDeleteListener = (btn) => {
-    btn.addEventListener('click', (event) => {
-      const btn = event.currentTarget;
-      const id = Number(btn.getAttribute('data-id'));
-      this.todoList = UpdateList.removeTask(id, this.todoList);
-      this.showAll();
-    });
+    btn.addEventListener('click', this.deleteEvent);
   };
 
   showDeleteBtn = (task) => {
@@ -55,10 +62,12 @@ export default class Listeners extends DisplayList {
       const li = event.target.parentNode;
       this.removeEditClass();
       li.classList.add('edit');
-      const deleteBtn = li.querySelector('.change-order');
+      const deleteBtn = li.querySelector('.right-btn');
+      deleteBtn.classList.remove('change-order');
       deleteBtn.classList.add('remove');
       deleteBtn.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
       this.setDeleteListener(deleteBtn);
+      event.stopPropagation();
     });
   };
 
